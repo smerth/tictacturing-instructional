@@ -12,7 +12,7 @@ class Template extends Component {
             <MuiThemeProvider>
                 <div>
                     <header>
-                        <h1>Tic Tac Turing</h1>
+                        <h1>Tic Tac Turing Game</h1>
                         <RaisedButton
                             label={'Test Button'}
                             primary={true}
