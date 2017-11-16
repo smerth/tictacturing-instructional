@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
