@@ -20,6 +20,5 @@ export const NavToggleButton = (props) => {
         <MenuIcon/>
       </FloatingActionButton>
     </StayVisible>
-
   )
 }
