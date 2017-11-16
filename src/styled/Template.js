@@ -5,8 +5,11 @@ import {media} from '../utils/media';
 
 export const Header = Styled.header`
   text-align: center;
-  font-size: 2em;
+  font-size: 2rem;
+  font-weight: bold;
   font-family: 'Roboto', sans-serif;
+  color: grey;
+  margin-bottom: 2rem;
 `
 
 export const Container = Styled.div`

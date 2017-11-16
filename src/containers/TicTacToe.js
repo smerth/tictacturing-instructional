@@ -48,7 +48,9 @@ class TicTacToe extends Component {
 
     render() {
       let {
-      size
+      size,
+      unit,
+      rows
     } = this.state
         return (
             <div>
@@ -56,7 +58,11 @@ class TicTacToe extends Component {
                     width={size}
                     height={size}
                 >
-                    {/* <Board/> */}
+                    <Board
+                        unit={unit}
+                        rows={rows}
+                        size={size}
+                    />
                     {/* <Squares/> */}
               </Stage>
             </div>
