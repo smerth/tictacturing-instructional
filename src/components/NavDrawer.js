@@ -43,22 +43,22 @@ class NavDrawer extends Component {
             Login Container
           </div>
           <Divider/>
-          <link
+          <Link
             to={'/'}
           >
             <MenuItem
               onTouchTap={this.toggle}
               primaryText={'Play'}
             />
-          </link>
-          <link
+          </Link>
+          <Link
             to={'/profile'}
           >
             <MenuItem
               onTouchTap={this.toggle}
               primaryText={'Profile'}
             />
-          </link>
+          </Link>
 
         </Drawer>
 
