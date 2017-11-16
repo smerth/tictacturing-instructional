@@ -34,3 +34,22 @@ export const Board = ({unit, size, rows}) => {
     </Layer>
   )
 }
+
+export const Squares = ({
+  unit, 
+  coordinates,
+  gameState,
+  win,
+  gameOver,
+  yourTurn,
+  ownMark,
+  move
+}) => {
+  return(
+    <Layer>
+      <Text
+
+      />
+    </Layer>
+  )
+}
