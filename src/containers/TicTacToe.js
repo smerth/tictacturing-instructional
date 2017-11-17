@@ -4,6 +4,24 @@ import {Board, Squares} from '../styled/TicTacToe';
 
 class TicTacToe extends Component {
 
+  // Define a set a winning combinations of positions
+  // Put in a constructor function to make it available
+  // throughout the app
+  constructor(props) {
+    super(props)
+    this.combos = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ]
+
+  }
+
     state = {
         rows: 3,
         gameState: new Array(9).fill(false),
@@ -22,6 +40,8 @@ class TicTacToe extends Component {
       let size = (height < width) ? height * .8 : width * .8
       let rows = this.state.rows
       let unit = size / rows
+      // generate x and y coordinates needed to draw the grid lines on canvas
+      // using this function makes the lines dependant on rows and unit variables
       let coordinates = []
       for (let y = 0; y < rows; y++) {
           for (let x = 0; x < rows; x++) {
@@ -41,12 +61,46 @@ class TicTacToe extends Component {
         console.log('Move made', marker, index);
     }
 
-    makeAiMove = () => {
-        // placeholder
+    makeAiMove = (gameState) => {
+        // we are just trying to get to mvp (minimum viable product)
+        // so we will just place a mark in at an empty positions
+        // instead of developing or calling an ai api
+        let otherMark = this.state.otherMark
+        let openSquares = []
+        // build an array of the indexes of empty squares
+        gameState.forEach((square, index) => {
+          // if the square is empty
+          if(!square) {
+            openSquares.push(index)
+          }
+        })
+        let aiMove = openSquares[this.random(0, openSquares.length)]
+        this.move(aiMove,otherMark)
     }
 
     turingTest = () => {
         // placeholder
+    }
+
+    // given a min and max returns a round random number between the two
+    random = (min, max) => {
+      // ensure min is a round number
+      min = Math.ceil(min)
+      // ensure max is a round number
+      max = Math.floor(max)
+      return Math.floor(Math.random() * (max-min)) + min
+    }
+
+    // Compares the values in the set of arrays in gameState
+    // with the values in set of the combos arrays
+    // return a boolean true if a gameState array matches a combo array
+    winChecker = (gameState) => {
+      let combos = this.combos
+      return combos.find((combo) => {
+        let [a,b,c] = combo
+        return (gameState[a] === gameState[b] && gameState[a] === gameState[c] && gameState[a])
+      })
+
     }
 
     recordGame = () => {
@@ -54,6 +108,7 @@ class TicTacToe extends Component {
     }
 
     render() {
+      // Call state variables into the render function
       let {
       size,
       unit,
@@ -67,25 +122,25 @@ class TicTacToe extends Component {
     } = this.state
         return (
             <div>
-                <Stage
-                    width={size}
-                    height={size}
-                >
-                    <Board
-                        unit={unit}
-                        rows={rows}
-                        size={size}
-                    />
-                    <Squares
-                        unit={unit}
-                        coordinates={coordinates}
-                        gameState={gameState}
-                        win={win}
-                        gameOver={gameOver}
-                        yourTurn={yourTurn}
-                        ownMark={ownMark}
-                        move={this.move}
-                    />
+              <Stage
+                width={size}
+                height={size}
+              >
+                <Board
+                  unit={unit}
+                  rows={rows}
+                  size={size}
+                />
+                <Squares
+                  unit={unit}
+                  coordinates={coordinates}
+                  gameState={gameState}
+                  win={win}
+                  gameOver={gameOver}
+                  yourTurn={yourTurn}
+                  ownMark={ownMark}
+                  move={this.move}
+                />
               </Stage>
             </div>
         )
