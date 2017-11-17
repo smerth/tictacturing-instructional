@@ -69,6 +69,8 @@ class AuthService {
     localStorage.removeItem('exp')
     location.reload()
   }
-
-
 }
+
+const auth = new AuthService()
+
+export default auth
