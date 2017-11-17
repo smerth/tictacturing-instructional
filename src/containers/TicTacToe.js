@@ -38,7 +38,7 @@ class TicTacToe extends Component {
     }
 
     move = (marker, index) => {
-        alert('Move made', marker, index);
+        console.log('Move made', marker, index);
     }
 
     makeAiMove = () => {
