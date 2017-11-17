@@ -57,8 +57,39 @@ class TicTacToe extends Component {
       })
     }
 
-    move = (marker, index) => {
-        console.log('Move made', marker, index);
+    move = (index, marker) => {
+      // wrap the entire move function in setState
+      // because the state is where we will hold all the info about the game
+        this.setState( (prevState, props) => {
+          // this is the state prior to this move function executing
+          let {gameState, yourTurn, gameOver, winner} = prevState;
+          yourTurn = !yourTurn;
+          // add the move to the gameState array
+          // splice takes the index of the array item to be modified,
+          //the number of arrays to modifiy
+          //and what to place in that array position
+          gameState.splice(index, 1, marker);
+          // check if there is a win
+          let foundWin = this.winChecker(gameState)
+          if(foundWin) {
+            winner = gameState[foundWin[0]];
+          }
+          if(foundWin || !gameState.includes(false)) {
+            gameOver = true;
+          }
+          if(!yourTurn && !gameOver) {
+            this.makeAiMove(gameState)
+          }
+
+          // this is the new state we return from the function
+          return {
+            gameState,
+            yourTurn,
+            gameOver,
+            win: foundWin || false,
+            winner
+          }
+        })
     }
 
     makeAiMove = (gameState) => {
@@ -75,7 +106,12 @@ class TicTacToe extends Component {
           }
         })
         let aiMove = openSquares[this.random(0, openSquares.length)]
-        this.move(aiMove,otherMark)
+        // introduce a delay to computer's move cause its thinking
+        setTimeout(() => {
+          this.move(aiMove,otherMark)
+        }, 1000)
+
+
     }
 
     turingTest = () => {
