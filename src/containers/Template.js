@@ -12,13 +12,13 @@ class Template extends Component {
     render() {
         return (
             <MuiThemeProvider>
-                <div>
-                    <NavDrawer
-                        auth={this.props.route.auth}
-                        authenticated={this.props.viewer.user}
-                    />
-                    <Header>
-                        Tic Tac turing
+              <div>
+                <NavDrawer
+                  auth={this.props.route.auth}
+                  authenticated={this.props.viewer.user}
+                />
+                <Header>
+                  Tic Tac Turing
                     </Header>
                     <Main>
                         {this.props.children}

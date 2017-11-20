@@ -17,7 +17,7 @@ const AuthButton = (props) => {
         label='Login / Signup'
         onTouchTap={props.auth.showLock}
         fullWidth={true}
-        secondary
+        primary
       />
     )
   }

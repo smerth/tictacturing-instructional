@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Stage} from 'react-konva';
 import {Board, Squares} from '../styled/TicTacToe';
 import Relay from 'react-relay/classic';
+import TuringTest from '../styled/TuringTest';
 
 class TicTacToe extends Component {
 
@@ -116,7 +117,13 @@ class TicTacToe extends Component {
     }
 
     turingTest = () => {
-        // placeholder
+        if(this.state.gameOver) {
+          return(
+            <TuringTest
+              
+            />
+          )
+        }
     }
 
     // given a min and max returns a round random number between the two
