@@ -34,8 +34,7 @@ Relay.injectNetworkLayer(
         ...createHeaders()
       }
       return next(req)
-    },
-
+    },  
   ],{disableBatchQuery: true})
 )
 
