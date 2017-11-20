@@ -11,7 +11,7 @@ export default class SigninUser extends Relay.Mutation {
   }
 
   getMutation () {
-    return Relay.QL`mutation{SigninUser}`
+    return Relay.QL`mutation{signinUser}`
   }
 
   getFatQuery () {
