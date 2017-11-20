@@ -67,10 +67,12 @@ class AuthService {
   logout = () => {
     localStorage.removeItem('idToken')
     localStorage.removeItem('exp')
+    // TODO - fix no-restricted-globals location
+    // eslint-disable-next-line
     location.reload()
   }
 }
 
-const auth = new AuthService()
+const auth = new AuthService();
 
-export default auth
+export default auth;
