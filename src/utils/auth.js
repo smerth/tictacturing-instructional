@@ -47,7 +47,7 @@ class AuthService {
   }
 
   showLock() {
-    this.showLock.show()
+    this.lock.show()
   }
 
   setToken = (authFields) => {
