@@ -120,7 +120,7 @@ class TicTacToe extends Component {
         if(this.state.gameOver) {
           return(
             <TuringTest
-              
+              recordGame={this.recordGame}
             />
           )
         }
@@ -147,8 +147,8 @@ class TicTacToe extends Component {
 
     }
 
-    recordGame = () => {
-        // placeholder
+    recordGame = (guess) => {
+      console.log(guess)
     }
 
     render() {
@@ -186,6 +186,7 @@ class TicTacToe extends Component {
                   move={this.move}
                 />
               </Stage>
+              {this.turingTest()}
             </div>
         )
     }

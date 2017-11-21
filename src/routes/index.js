@@ -7,7 +7,7 @@ import Relay from 'react-relay/classic';
 import auth from '../utils/auth';
 
 const ViewerQueries = {
-  viewer: () => Relay.QL`query {viewer}`
+  viewer: () => Relay.QL`query { viewer }`
 }
 
 const createRoutes = () => {
