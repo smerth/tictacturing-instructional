@@ -5,95 +5,87 @@ import Relay from 'react-relay/classic';
 
 class Profile extends Component {
 
-    static defaultProps = {
-        user: {
-            email: 'user@test.com',
-            games: [
-                {
-                    winner: false,
-                    createdAt: '10/25/2016',
-                    id: '0001'
-                },
-                {
-                    winner: true,
-                    createdAt: '10/26/2016',
-                    id: '0002'
-                },
-                {
-                    winner: false,
-                    createdAt: '10/27/2016',
-                    id: '0003'
-                }
-            ]
-        }
-    }
+  get records() {
+    return this.props.viewer.user.p1games.edges.map( (edge,index) => {
+      let {node: game} = edge
+      return (
+        <GameRecord
+          key={index}
+          index={index}
+        >
+          <Column>
+            {(game.winner) ? 'Won!' : "Didn't win"}
+          </Column>
+          <Column>
+            {game.p1Guess}
+          </Column>
+          <Column>
+            {(game.p1GuessCorrect) ? 'Yes' : 'Nope'}
+          </Column>
+          <Column>
+            {new Date(game.createdAt).toLocaleDateString()}
+          </Column>
+        </GameRecord>
+      )
+    })
+  }
 
-    get records() {
-        return this.props.user.games.map( (game, index) => {
-            return(
-                <GameRecord
-                    key={index}
-                    index={index}
-                >
-                    <Column>
-                        {(game.winner) ? 'Won!' : "Didn't win"}
-                    </Column>
-                    <Column>
-                        "Robot"
-                    </Column>
-                    <Column>
-                        "Wrong"
-                    </Column>
-                    <Column>
-                        {game.createdAt}
-                    </Column>
-                </GameRecord>
-            )
-        })
-    }
-
-    render() {
-        let {email} = this.props.user
-        return (
-            <Container>
-                <Name>
-                    {email}
-                </Name>
-                <GameList>
-                    <GameListHeader>
-                        My Games
-                    </GameListHeader>
-                    <ColumnLabels>
-                        <Column>
-                            Outcome
-                        </Column>
-                        <Column>
-                            Guessed
-                        </Column>
-                        <Column>
-                            Guessed Correctly
-                        </Column>
-                        <Column>
-                            Date
-                        </Column>
-                    </ColumnLabels>
-                    {this.records}
-                </GameList>
-            </Container>
-        )
-    }
+  render() {
+    let {email} = this.props.viewer.user
+    return (
+      <Container>
+        <Name>
+          {email}
+        </Name>
+        <GameList>
+          <GameListHeader>
+            MyGames
+          </GameListHeader>
+          <ColumnLabels>
+            <Column>
+              Outcome
+            </Column>
+            <Column>
+              Guess
+            </Column>
+            <Column>
+              Guessed Correctly
+            </Column>
+            <Column>
+              Date
+            </Column>
+          </ColumnLabels>
+          {this.records}
+        </GameList>
+      </Container>
+    )
+  }
 }
 
 export default Relay.createContainer(
-    Profile, {
-        fragments: {
-            viewer: () => Relay.QL`
-            fragment on Viewer {
-                user {
+  Profile, {
+    fragments: {
+      viewer: () => Relay.QL`
+        fragment on Viewer {
+          user {
+            id
+            email
+            p1games (first: 10) {
+              edges {
+                node {
+                  id
+                  createdAt
+                  winner {
                     id
+                  }
+                  p1Guess
+                  p1GuessCorrect
                 }
+              }
             }
-            `,
+          }
         }
+      `,
     }
+  }
 )

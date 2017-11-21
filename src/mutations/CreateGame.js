@@ -1,11 +1,11 @@
-import Relay from 'react-relay'
+import Relay from 'react-relay/classic'
 
 export default class CreateGame extends Relay.Mutation {
 
 	getVariables() {
 		return {
-			p1user: this.props.p1user,
-			winner: this.props.winner,
+			p1userId: this.props.user.id,
+			winnerId: this.props.winnerId,
 			p1Guess: this.props.guess,
 			p1GuessCorrect: this.props.guessCorrect
 		}
@@ -28,7 +28,7 @@ export default class CreateGame extends Relay.Mutation {
 			{
 				type: 'RANGE_ADD',
 				parentName: 'p1user',
-				parentId: this.props.p1user.id,
+				parentId: this.props.user.id,
 				connectionName: 'p1games',
 				edgeName: 'edge',
 				rangeBehaviors: {
