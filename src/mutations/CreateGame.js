@@ -28,7 +28,7 @@ export default class CreateGame extends Relay.Mutation {
 			{
 				type: 'RANGE_ADD',
 				parentName: 'p1user',
-				parentId: this.props.user.id,
+				parentID: this.props.user.id,
 				connectionName: 'p1games',
 				edgeName: 'edge',
 				rangeBehaviors: {

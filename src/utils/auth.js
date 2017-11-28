@@ -10,11 +10,10 @@ const clientId = 'kp3icVlkUcr1zEhA4b8JCpTFrk0yLjp0';
 class AuthService {
 	constructor() {
 		this.lock = new Auth0Lock(clientId, authDomain, {
-			auth: {
-				params: {
-					scope: 'openid email'
-				},
-			},
+      auth: {
+        responseType: 'id_token',
+        params: {scope: 'openid email'}
+      },
 		})
 
 		this.showLock = this.showLock.bind(this)
@@ -27,7 +26,10 @@ class AuthService {
 			email,
 			exp
 		} = authResult.idTokenPayload
+
 		const idToken = authResult.idToken
+
+		console.log(idToken)
 
 		this.signinUser({
 			idToken,
