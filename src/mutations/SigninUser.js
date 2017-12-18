@@ -1,17 +1,18 @@
-import Relay from 'react-relay/classic'
+import Relay from 'react-relay/classic';
 
 export default class SigninUser extends Relay.Mutation {
 
 	getVariables() {
 		return {
+			email: this.props.email,
 			auth0: {
 				idToken: this.props.idToken
 			}
-		}
+		};
 	}
 
 	getMutation () {
-		return Relay.QL`mutation{signinUser}`
+		return Relay.QL`mutation{signinUser}`;
 	}
 
 	getFatQuery () {
@@ -19,7 +20,7 @@ export default class SigninUser extends Relay.Mutation {
 			fragment on SigninPayload {
 				viewer
 			}
-		`
+		`;
 	}
 
 	getConfigs() {
@@ -38,7 +39,7 @@ export default class SigninUser extends Relay.Mutation {
 					`
 				]
 			}
-		]
+		];
 	}
 
 }

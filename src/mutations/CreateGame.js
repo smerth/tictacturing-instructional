@@ -1,4 +1,4 @@
-import Relay from 'react-relay/classic'
+import Relay from 'react-relay/classic';
 
 export default class CreateGame extends Relay.Mutation {
 
@@ -8,19 +8,20 @@ export default class CreateGame extends Relay.Mutation {
 			winnerId: this.props.winnerId,
 			p1Guess: this.props.guess,
 			p1GuessCorrect: this.props.guessCorrect
-		}
+		};
 	}
 
 	getMutation () {
-		return Relay.QL`mutation{createGame}`
+		return Relay.QL`mutation{createGame}`;
 	}
 
+	// TODO: is this right?
 	getFatQuery () {
 		return Relay.QL`
 			fragment on CreateGamePayload {
-				p1user
+				p1player
 			}
-		`
+		`;
 	}
 
 	getConfigs() {
@@ -35,7 +36,7 @@ export default class CreateGame extends Relay.Mutation {
 					'': 'append',
 				},
 			},
-		]
+		];
 	}
 
 }
