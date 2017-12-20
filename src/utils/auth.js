@@ -1,19 +1,26 @@
 import Auth0Lock from 'auth0-lock';
+import { AUTH_CONFIG } from '../config/auth0-variables';
+// import history from '../history';
 import Relay from 'react-relay/classic'
 import CreateUser from '../mutations/CreateUser';
 import SigninUser from '../mutations/SigninUser';
 
-const authDomain = 'smc.auth0.com';
-const clientId = 'kp3icVlkUcr1zEhA4b8JCpTFrk0yLjp0';
+
 
 
 class AuthService {
 	constructor() {
-		this.lock = new Auth0Lock(clientId, authDomain, {
-      auth: {
-        responseType: 'id_token',
-        params: {scope: 'openid email'}
-      },
+		this.lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
+			oidcConformant: true,
+			autoclose: true,
+			auth: {
+				// redirectUrl: AUTH_CONFIG.callbackUrl,
+				responseType: 'token id_token',
+				audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+				params: {
+				  scope: 'openid email'
+				}
+			  },
 		})
 
 		this.showLock = this.showLock.bind(this)
@@ -27,9 +34,13 @@ class AuthService {
 			exp
 		} = authResult.idTokenPayload
 
+		console.log('authResult: ' + authResult)
+		console.log('email: ' + email)
+		console.log('exp: ' + exp)
+
 		const idToken = authResult.idToken
 
-		console.log(idToken)
+		console.log('idToken: ' + idToken)
 
 		this.signinUser({
 			idToken,
@@ -55,8 +66,10 @@ class AuthService {
 	setToken = (authFields) => {
 		let {
 			idToken,
+			email,
 			exp
 		} = authFields
+		localStorage.setItem('email', email)
 		localStorage.setItem('idToken', idToken)
 		localStorage.setItem('exp', exp * 1000)
 	}
@@ -97,6 +110,7 @@ class AuthService {
 	}
 
 	createUser = (authFields) => {
+
 		return new Promise( (resolve, reject) => {
 			Relay.Store.commitUpdate(
 				new CreateUser({

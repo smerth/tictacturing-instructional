@@ -1,4 +1,4 @@
-import Relay from 'react-relay/classic'
+import Relay from 'react-relay/classic';
 
 export default class CreateUser extends Relay.Mutation {
 
@@ -10,11 +10,11 @@ export default class CreateUser extends Relay.Mutation {
 					idToken: this.props.idToken
 				}
 			},
-		}
+		};
 	}
 
 	getMutation () {
-		return Relay.QL`mutation{createUser}`
+		return Relay.QL`mutation{createUser}`;
 	}
 
 	getFatQuery () {
@@ -23,7 +23,7 @@ export default class CreateUser extends Relay.Mutation {
 				user
 				viewer
 			}
-		`
+		`;
 	}
 
 	getConfigs() {
@@ -47,7 +47,7 @@ export default class CreateUser extends Relay.Mutation {
 					`
 				]
 			}
-		]
+		];
 	}
 
 }
