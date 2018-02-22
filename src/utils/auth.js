@@ -16,7 +16,7 @@ class AuthService {
 			auth: {
 				// redirectUrl: AUTH_CONFIG.callbackUrl,
 				responseType: 'token id_token',
-				audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+				// audience: AUTH_CONFIG.audiences,
 				params: {
 				  scope: 'openid email'
 				}
@@ -34,12 +34,12 @@ class AuthService {
 			exp
 		} = authResult.idTokenPayload
 
-		console.log('authResult: ' + authResult)
-		console.log('email: ' + email)
-		console.log('exp: ' + exp)
+		console.log('authResult: ' , authResult)
+		console.log('email: ' , email)
+		console.log('exp: ' , exp)
 
 		const idToken = authResult.idToken
-
+		// const accessToken = authResult.accessToken
 		console.log('idToken: ' + idToken)
 
 		this.signinUser({

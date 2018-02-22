@@ -15,6 +15,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
 
+
+
+## Status
+
+App currently broken Auth0 login not working so game results board not accessible.
+
+
+
 ## Releases
 
 release 1.0.0 - completed tutorial uses relay classic instead of modern (Auth0 not working)
