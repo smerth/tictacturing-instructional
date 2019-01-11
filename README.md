@@ -1,5 +1,7 @@
 # Building Deploying Full Stack ReactApplication
 
+![App Screenshot](https://raw.githubusercontent.com/smerthtictacturing-instructional/master/screenshot.png)
+
 ## Source
 
 [Lynda.com Tutorial](https://www.lynda.com/React-js-tutorials/Building-Deploying-Full-Stack-React-Application/558648-2.html)
@@ -15,13 +17,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
 
-
-
 ## Status
 
 App currently broken Auth0 login not working so game results board not accessible.
-
-
 
 ## Releases
 
