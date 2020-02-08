@@ -47,7 +47,7 @@
     "konva": "^1.7.6",
     "material-ui": "^0.19.4",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1",
+    "react-dom": "^16.1.2",
     "react-konva": "^1.6.2",
     "react-relay": "^1.4.1",
     "react-relay-network-layer": "^2.1.1",
